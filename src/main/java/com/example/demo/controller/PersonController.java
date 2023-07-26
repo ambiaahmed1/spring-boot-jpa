@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PersonController {
@@ -29,12 +30,12 @@ public class PersonController {
         return person;
     }
 
-    /*@RequestMapping(value = "/{personId}", method = RequestMethod.GET)
-    public Person getPerson(@PathVariable Long personId) {
-        Person person = personRepository.findOne(personId);
+    @RequestMapping(value = "/{personId}", method = RequestMethod.GET)
+    public Optional<Person> getPerson(@PathVariable Long personId) {
+        Optional<Person> person = personRepository.findById(personId);
         LOG.info("Got person from DB: {}.", person);
         return person;
-    }*/
+    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Person> getAllPerson() {
